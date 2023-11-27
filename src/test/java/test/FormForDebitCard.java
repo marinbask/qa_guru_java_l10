@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class FormForDebitCard extends TestBaseTinkoff {
     @DisplayName("Валидация поля Дата рождения")
     @ArgumentsSource(BirthdayArgumentProvider.class)
-    @ParameterizedTest(name = "Для даты {0} текст валидации должен быть {1}")
+    @ParameterizedTest(name = "Для даты {0} текст валидации долженбыть {1}")
     void successfulSendFormForDebitCard(String birthday, String ValidationText) {
         open("/cards/debit-cards/tinkoff-black/");
         $("#form").scrollIntoView(true);
@@ -23,7 +23,6 @@ public class FormForDebitCard extends TestBaseTinkoff {
         $("div[data-qa-type=\"uikit/formRow.errorBlock\"]").shouldHave(exactText(ValidationText));
     }
 
-    @DisplayName("Локализация страницы для определенного url")
     @CsvSource(value = {
             "cards/debit-cards/tinkoff-black/foreign/kg/ , Россияда жашоо жана иштөө үчүн ыңгайлуу карта",
             "cards/debit-cards/tinkoff-black/foreign/uz/ , Rossiyada yashash va ishlash uchun qulay karta",
@@ -36,12 +35,11 @@ public class FormForDebitCard extends TestBaseTinkoff {
     }
 
     @DisplayName("Первый элемент поисковой выдачи содержит текст запроса")
-    @ParameterizedTest(name = "Если искать {0}, то первый элемент в поисковой выдачи будет {0}")
+    @ParameterizedTest(name = "Если искать {0}, то первый элемент в поисковой выдаче будет {0}")
     @ValueSource(strings = {
             "Как скачать приложение",
             "Как написать в чат",
-            "Кэшбэк",
-            "Перевод"
+            "Получить справку или выписку"
     })
     void checkOutPut(String textSearch){
         open("help/");
