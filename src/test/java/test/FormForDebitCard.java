@@ -1,7 +1,6 @@
 package test;
 
 import data.BirthdayArgumentProvider;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -12,7 +11,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class FormForDebitCard extends TestBaseTinkoff {
-    @DisplayName("Валидация поля Дата рождения")
     @ArgumentsSource(BirthdayArgumentProvider.class)
     @ParameterizedTest(name = "Для даты {0} текст валидации долженбыть {1}")
     void successfulSendFormForDebitCard(String birthday, String ValidationText) {
@@ -34,7 +32,7 @@ public class FormForDebitCard extends TestBaseTinkoff {
         $("div[class=\"application\"]").shouldHave(text(ValidationText));
     }
 
-    @DisplayName("Первый элемент поисковой выдачи содержит текст запроса")
+
     @ParameterizedTest(name = "Если искать {0}, то первый элемент в поисковой выдаче будет {0}")
     @ValueSource(strings = {
             "Как скачать приложение",
